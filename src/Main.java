@@ -3,7 +3,7 @@ import contactBook.ContactBook;
 
 import java.util.Scanner;
 
-//#vski
+
 public class Main {
     //Constantes que definem os comandos
     public static final String ADD_CONTACT    = "AC";
@@ -15,6 +15,8 @@ public class Main {
     public static final String LIST_CONTACTS  = "LC";
     public static final String QUIT           = "Q";
     public static final String GET_CONTACT    = "GN";
+    public static final String VERIFY_CONTACT_REPEAT= "EP";
+	
 
     //Constantes que definem as mensagens para o utilizador
     public static final String CONTACT_EXISTS = "contactBook.Contact already exists.";
@@ -25,6 +27,8 @@ public class Main {
     public static final String BOOK_EMPTY = "contactBook.Contact book empty.";
     public static final String QUIT_MSG = "Goodbye!";
     public static final String COMMAND_ERROR = "Unknown command.";
+
+
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -54,6 +58,9 @@ public class Main {
                 case LIST_CONTACTS:
                     listAllContacts(cBook);
                     break;
+		case VERIFY_CONTACT_REPEAT:
+                 	verifyContactsRepeats(cBook);
+                 break;
                 case GET_CONTACT:
 				 getNameByContact(in, cBook);
 				 break;
@@ -67,7 +74,13 @@ public class Main {
         System.out.println();
         in.close();
     }
-
+	private static void verifyContactsRepeats(ContactBook cBook) {
+        cBook.samePhone();
+        if(cBook.samePhone() == true) {
+            System.out.println(CONTACT_SHARE_NUMBERS);
+        }else
+            System.out.println(DIFFERENT_NUMBERS);}
+	
     private static String getCommand(Scanner in) {
         String input;
 
@@ -165,3 +178,4 @@ public class Main {
         else System.out.println(BOOK_EMPTY);
     }
 }
+//#vski na prozis
